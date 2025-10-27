@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
-import { Volume2 } from 'lucide-react';
+import Winner from './Winner';
 
 const sections = [
-    { label: 'Silver Tongue', color: '#C0C0C0', textColor: '#1a1a1a' },
-    { label: 'Fact Check', color: '#8B4513', textColor: '#ffffff' },
-    { label: 'Spin Again', color: '#FFD700', textColor: '#1a1a1a' },
-    { label: 'Insurance Policy', color: '#B8860B', textColor: '#1a1a1a' },
-    { label: 'Whisper', color: '#8B0000', textColor: '#ffffff' },
-    { label: 'Decoy', color: '#2F4F4F', textColor: '#ffffff' },
-    { label: 'Follow Up', color: '#DAA520', textColor: '#1a1a1a' },
-    { label: 'Spin Again', color: '#FF8C00', textColor: '#1a1a1a' },
+    { label: 'Silver Tongue', color: '#00000000', textColor: '#ffffff' },
+    { label: 'Fact Check', color: '#00000000', textColor: '#ffffff' },
+    { label: 'Spin Again', color: '#00000000', textColor: '#ffffff' },
+    { label: 'Insurance Policy', color: '#00000000', textColor: '#ffffff' },
+    { label: 'Whisper', color: '#00000000', textColor: '#ffffff' },
+    { label: 'Decoy', color: '#00000000', textColor: '#ffffff' },
+    { label: 'Follow Up', color: '#00000000', textColor: '#ffffff' },
+    { label: 'Spin Again', color: '#00000000', textColor: '#ffffff' },
 ];
 
 export default function SpinWheel() {
@@ -97,86 +97,35 @@ export default function SpinWheel() {
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 w-4 h-4 bg-amber-500 rounded-full border-2 border-amber-800"></div>
                         </div>
 
-                        <svg
-                            width="400"
-                            height="400"
-                            viewBox="0 0 400 400"
-                            className="drop-shadow-2xl focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-500"
-                            onClick={spinWheel}
-                            role="button"
-                            tabIndex={0}
-                            aria-pressed={isSpinning}
-                            aria-label="Spin the wheel"
-                            title="Click to spin"
-                            style={{
-                                transform: `rotate(${rotation}deg)`,
-                                transition: isSpinning ? 'transform 4s cubic-bezier(0.25, 0.1, 0.25, 1)' : 'none',
-                                cursor: isSpinning ? 'wait' : 'pointer',
-                                pointerEvents: isSpinning ? 'none' : 'auto',
-                                outline: 'none',
-                                WebkitTapHighlightColor: 'transparent',
-                            }}
-                            onKeyDown={(e) => {
-                                if ((e.key === 'Enter' || e.key === ' ') && !isSpinning) {
-                                    e.preventDefault();
-                                    spinWheel();
-                                }
-                            }}
-                        >
-                            <defs>
-                                <filter id="shadow">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="8" floodOpacity="0.5" />
-                                </filter>
-                            </defs>
-
-                            <circle cx="200" cy="200" r="190" fill="#4A2C2A" filter="url(#shadow)" />
-                            <circle cx="200" cy="200" r="180" fill="#2C1810" />
-
-                            {sections.map((section, index) => {
-                                const angle = (360 / sections.length) * index;
-                                const nextAngle = (360 / sections.length) * (index + 1);
-                                const startAngle = (angle - 90) * (Math.PI / 180);
-                                const endAngle = (nextAngle - 90) * (Math.PI / 180);
-
-                                const x1 = 200 + 175 * Math.cos(startAngle);
-                                const y1 = 200 + 175 * Math.sin(startAngle);
-                                const x2 = 200 + 175 * Math.cos(endAngle);
-                                const y2 = 200 + 175 * Math.sin(endAngle);
-
-                                const middleAngle = (startAngle + endAngle) / 2;
-                                const textX = 200 + 120 * Math.cos(middleAngle);
-                                const textY = 200 + 120 * Math.sin(middleAngle);
-                                const textRotation = (angle + nextAngle) / 2;
-
-                                return (
-                                    <g key={index}>
-                                        <path
-                                            d={`M 200 200 L ${x1} ${y1} A 175 175 0 0 1 ${x2} ${y2} Z`}
-                                            fill={section.color}
-                                            stroke="#2C1810"
-                                            strokeWidth="3"
-                                        />
-                                        <text
-                                            x={textX}
-                                            y={textY}
-                                            fill={section.textColor}
-                                            fontSize="16"
-                                            fontWeight="bold"
-                                            textAnchor="middle"
-                                            dominantBaseline="middle"
-                                            transform={`rotate(${textRotation}, ${textX}, ${textY})`}
-                                            style={{ fontFamily: 'Georgia, serif' }}
-                                        >
-                                            {section.label}
-                                        </text>
-                                    </g>
-                                );
-                            })}
-
-                            <circle cx="200" cy="200" r="30" fill="#DAA520" stroke="#8B4513" strokeWidth="3" />
-                            <circle cx="200" cy="200" r="20" fill="#B8860B" />
-                            <circle cx="200" cy="200" r="10" fill="#FFD700" />
-                        </svg>
+                        <div className="w-[400px] h-[400px] relative flex items-center justify-center">
+                            <img
+                                src="/Wheel.png"
+                                alt="Wheel of Destiny"
+                                width={400}
+                                height={400}
+                                role="button"
+                                tabIndex={0}
+                                aria-pressed={isSpinning}
+                                aria-label="Spin the wheel"
+                                title="Click to spin"
+                                onClick={spinWheel}
+                                onKeyDown={(e) => {
+                                    if ((e.key === 'Enter' || e.key === ' ') && !isSpinning) {
+                                        e.preventDefault();
+                                        spinWheel();
+                                    }
+                                }}
+                                className="drop-shadow-2xl focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-500"
+                                style={{
+                                    transform: `rotate(${rotation}deg)`,
+                                    transition: isSpinning ? 'transform 4s cubic-bezier(0.25, 0.1, 0.25, 1)' : 'none',
+                                    cursor: isSpinning ? 'wait' : 'pointer',
+                                    pointerEvents: isSpinning ? 'none' : 'auto',
+                                    outline: 'none',
+                                    WebkitTapHighlightColor: 'transparent',
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
