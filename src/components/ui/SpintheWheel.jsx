@@ -4,10 +4,12 @@ import { Volume2 } from 'lucide-react';
 const sections = [
     { label: 'Silver Tongue', color: '#C0C0C0', textColor: '#1a1a1a' },
     { label: 'Fact Check', color: '#8B4513', textColor: '#ffffff' },
+    { label: 'Spin Again', color: '#FFD700', textColor: '#1a1a1a' },
     { label: 'Insurance Policy', color: '#B8860B', textColor: '#1a1a1a' },
     { label: 'Whisper', color: '#8B0000', textColor: '#ffffff' },
     { label: 'Decoy', color: '#2F4F4F', textColor: '#ffffff' },
     { label: 'Follow Up', color: '#DAA520', textColor: '#1a1a1a' },
+    { label: 'Spin Again', color: '#FF8C00', textColor: '#1a1a1a' },
 ];
 
 export default function SpinWheel() {
@@ -192,45 +194,7 @@ export default function SpinWheel() {
                             ></div>
                         </div>
 
-                        <div className="relative z-10">
-                            <div className="flex items-center justify-center mb-6">
-                                <Volume2 className="w-12 h-12 text-amber-300 animate-pulse" />
-                            </div>
-
-                            <h2
-                                className="text-3xl md:text-4xl font-bold text-center text-amber-100 mb-4"
-                                style={{ fontFamily: 'Georgia, serif' }}
-                            >
-                                🏺 Destiny Revealed! 🏺
-                            </h2>
-
-                            <div className="bg-amber-950 bg-opacity-50 rounded-lg p-6 mb-6 border-2 border-amber-600">
-                                <p
-                                    className="text-4xl font-bold text-center text-yellow-300 animate-pulse"
-                                    style={{ fontFamily: 'Georgia, serif' }}
-                                >
-                                    {selectedSection}
-                                </p>
-                            </div>
-
-                            <div className="flex flex-col gap-3">
-                                <button
-                                    onClick={spinWheel}
-                                    className="w-full px-8 py-3 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-amber-950 font-bold rounded-lg hover:scale-105 transform transition-all duration-200 shadow-lg border-2 border-amber-700"
-                                    style={{ fontFamily: 'Georgia, serif' }}
-                                >
-                                    ↻ SPIN AGAIN
-                                </button>
-
-                                <button
-                                    onClick={closePopup}
-                                    className="w-full px-8 py-3 bg-red-900 text-amber-100 font-bold rounded-lg hover:bg-red-800 transform transition-all duration-200 shadow-lg border-2 border-red-950"
-                                    style={{ fontFamily: 'Georgia, serif' }}
-                                >
-                                    ✕ Close
-                                </button>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             )}
