@@ -99,10 +99,26 @@ export default function SpinWheel() {
                             width="400"
                             height="400"
                             viewBox="0 0 400 400"
-                            className="drop-shadow-2xl"
+                            className="drop-shadow-2xl focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-500"
+                            onClick={spinWheel}
+                            role="button"
+                            tabIndex={0}
+                            aria-pressed={isSpinning}
+                            aria-label="Spin the wheel"
+                            title="Click to spin"
                             style={{
                                 transform: `rotate(${rotation}deg)`,
                                 transition: isSpinning ? 'transform 4s cubic-bezier(0.25, 0.1, 0.25, 1)' : 'none',
+                                cursor: isSpinning ? 'wait' : 'pointer',
+                                pointerEvents: isSpinning ? 'none' : 'auto',
+                                outline: 'none',
+                                WebkitTapHighlightColor: 'transparent',
+                            }}
+                            onKeyDown={(e) => {
+                                if ((e.key === 'Enter' || e.key === ' ') && !isSpinning) {
+                                    e.preventDefault();
+                                    spinWheel();
+                                }
                             }}
                         >
                             <defs>
@@ -161,18 +177,6 @@ export default function SpinWheel() {
                         </svg>
                     </div>
                 </div>
-
-                <button
-                    onClick={spinWheel}
-                    disabled={isSpinning}
-                    className={`mt-12 px-12 py-4 text-2xl font-bold rounded-lg shadow-2xl transform transition-all duration-200 border-4 ${isSpinning
-                            ? 'bg-gray-600 border-gray-700 text-gray-400 cursor-not-allowed'
-                            : 'bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 border-amber-700 text-amber-950 hover:scale-110 hover:shadow-amber-500/50 active:scale-95'
-                        }`}
-                    style={{ fontFamily: 'Georgia, serif' }}
-                >
-                    {isSpinning ? 'SPINNING...' : '⚡ SPIN THE WHEEL ⚡'}
-                </button>
             </div>
 
             {showPopup && selectedSection && (
